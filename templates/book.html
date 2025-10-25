@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ book.title }}{% endblock %}
+
+{% block content %}
+<h1>{{ book.title }}</h1>
+<p><strong>Author:</strong> {{ book.author }}</p>
+<p><strong>Year:</strong> {{ book.year }}</p>
+<p><strong>ISBN:</strong> {{ book.isbn }}</p>
+
+{% if api_info %}
+    <p><strong>Pages:</strong> {{ api_info.pages }}</p>
+    <p><strong>Published:</strong> {{ api_info.publish_year }}</p>
+{% endif %}
+
+<hr>
+<h2>Reviews</h2>
+
+{% if reviews %}
+    <ul>
+        {% for review in reviews %}
+            <li><strong>{{ review.username }}</strong> rated {{ review.rating }}/5: {{ review.comment }} <em>({{ review.timestamp }})</em></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No reviews yet. Be the first to review!</p>
+{% endif %}
+
+<hr>
+<h2>Leave a Review</h2>
+<form method="post">
+    <label for="rating">Rating (1-5):</label>
+    <input type="number" name="rating" min="1" max="5" required>
+    <br>
+    <label for="comment">Comment:</label>
+    <textarea name="comment" placeholder="Write your review here..."></textarea>
+    <br>
+    <button type="submit">Submit Review</button>
+</form>
+
+{% endblock %}

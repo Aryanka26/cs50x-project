@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Book Review{% endblock %}</title>
+    <link href="/static/styles.css" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        {% if session.user_id %}
+            <a href="/">Home</a>
+            <a href="/search">Search</a>
+            <a href="/logout">Logout</a>
+        {% else %}
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+        {% endif %}
+    </nav>
+
+    <main>
+        {% block main %}
+          
+        {% endblock %}
+    </main>
+</body>
+</html>
