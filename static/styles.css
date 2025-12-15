@@ -264,3 +264,89 @@ body.dark .review {
 .save-avatar-btn:hover {
     background-color: #1d4ed8;
 }
+
+.hero {
+    background: linear-gradient(135deg, #e0f2fe, #f8fafc);
+    padding: 40px;
+    border-radius: 14px;
+    margin-bottom: 30px;
+}
+
+.hero h1 {
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 16px;
+    color: #475569;
+}
+
+.book-card {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    background: #f9fafb;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+}
+
+.book-card img {
+    width: 60px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+    margin-bottom: 25px;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background: #e5e7eb;
+    margin: 30px 0;
+}
+
+
+.book-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.book-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+body.dark .book-card {
+    background: #020617;
+    color: #e5e7eb;
+    border: 1px solid #1e293b;
+}
+
+body.dark .book-card a {
+    color: #93c5fd;
+}
+
+body.dark .book-card a:hover {
+    color: #bfdbfe;
+}
+
+body.dark .star-empty {
+    color: #475569;
+}
+
+body.dark .hero {
+    background: linear-gradient(135deg, #020617, #020617);
+    color: #e5e7eb;
+}
+
+body, .book-card, .hero {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}

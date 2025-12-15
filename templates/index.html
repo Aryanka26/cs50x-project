@@ -3,22 +3,35 @@
 {% block title %}My Dashboard{% endblock %}
 
 {% block main %}
+    <div class="hero">
+        <h1>Discover & Review Books</h1>
+        <p>Track your reading, rate books, and explore top-rated titles.</p>
+    </div>
 
     <h2>Reviewed Books</h2>
     {% if reviews %}
         <ul>
         {% for review in reviews %}
-            <li>
-                <a href="/book/{{ review.isbn }}">{{ review.title }}</a>
-                <span class="stars">
-                    {% for i in range(review.rating) %}
-                        ★
-                    {% endfor %}
-                    {% for i in range(5 - review.rating) %}
-                        <span class="star-empty">★</span>
-                    {% endfor %}
-                </span>
-            </li>
+            <div class="book-card">
+                <img
+                    src="https://covers.openlibrary.org/b/isbn/{{ review.isbn }}-M.jpg"
+                    alt="Book cover"
+                    onerror="this.style.display='none'"
+                >
+
+                <div>
+                    <a href="/book/{{ review.isbn }}">
+                        <strong>{{ review.title }}</strong>
+                    </a>
+
+                    <span class="stars">
+                        {% for i in range(review.rating) %}★{% endfor %}
+                        {% for i in range(5 - review.rating) %}
+                            <span class="star-empty">★</span>
+                        {% endfor %}
+                    </span>
+                </div>
+            </div>
         {% endfor %}
         </ul>
     {% else %}
@@ -27,7 +40,7 @@
 
     <hr>
 
-    <h2>Recently Searched Books</h2>
+    <h2>📚 Recently Searched</h2>
     {% if searches %}
         <ul>
         {% for book in searches %}

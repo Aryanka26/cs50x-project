@@ -36,29 +36,32 @@
 
 <hr>
 
-<h2>Your Reviews</h2>
+<h2>⭐ Your Reviews</h2>
 
 {% if reviews %}
     {% for review in reviews %}
-        <div class="review">
-            <a href="/book/{{ review.isbn }}">
-                <strong>{{ review.title }}</strong>
-            </a>
-            <br>
-            <em>{{ review.author }}</em>
-            <br>
+        <div class="book-card">
+            <img
+                src="https://covers.openlibrary.org/b/isbn/{{ review.isbn }}-M.jpg"
+                alt="Book cover"
+                onerror="this.style.display='none'"
+            >
 
-            <span class="stars">
-                {% for i in range(review.rating) %}
-                    ★
-                {% endfor %}
-                {% for i in range(5 - review.rating) %}
-                    <span class="star-empty">★</span>
-                {% endfor %}
-            </span>
+            <div>
+                <a href="/book/{{ review.isbn }}">
+                    <strong>{{ review.title }}</strong>
+                </a>
+                <p>{{ review.author }}</p>
 
-            <p>{{ review.comment }}</p>
-            <small>{{ review.timestamp }}</small>
+                <span class="stars">
+                    {% for i in range(review.rating) %}★{% endfor %}
+                    {% for i in range(5 - review.rating) %}
+                        <span class="star-empty">★</span>
+                    {% endfor %}
+                </span>
+
+                <p>{{ review.comment }}</p>
+            </div>
         </div>
     {% endfor %}
 {% else %}
