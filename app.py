@@ -5,9 +5,16 @@ from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import apology, login_required, lookup_book
 from datetime import datetime
+from werkzeug.utils import secure_filename
+
 
 # Configure application
 app = Flask(__name__)
+
+UPLOAD_FOLDER = "static/avatars"
+ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg"}
+
+app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
 # Ensure templates are auto-reloaded
 app.config["TEMPLATES_AUTO_RELOAD"] = True
@@ -19,6 +26,9 @@ Session(app)
 
 # Connect to database
 db = SQL("sqlite:///books.db")
+
+def allowed_file(filename):
+    return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
 
 # Home route
 @app.route("/")
@@ -46,6 +56,67 @@ def index():
     """, user_id)
 
     return render_template("index.html", reviews=reviews, searches=searches)
+
+# profile route
+@app.route("/profile", methods=["GET", "POST"])
+@login_required
+def profile():
+    user_id = session["user_id"]
+
+    if request.method == "POST":
+        if "avatar" not in request.files:
+            return apology("no file uploaded")
+
+        file = request.files["avatar"]
+
+        if file.filename == "":
+            return apology("no selected file")
+
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            ext = filename.rsplit(".", 1)[1]
+            new_filename = f"user_{user_id}.{ext}"
+
+            file.save(os.path.join(app.config["UPLOAD_FOLDER"], new_filename))
+
+            db.execute(
+                "UPDATE users SET avatar = ? WHERE id = ?",
+                new_filename, user_id
+            )
+
+            return redirect("/profile")
+
+        else:
+            return apology("invalid file type")
+
+    user = db.execute(
+        "SELECT username, avatar FROM users WHERE id = ?",
+        user_id
+    )[0]
+
+    stats = db.execute("""
+        SELECT COUNT(*) AS review_count,
+               ROUND(AVG(rating), 2) AS avg_rating
+        FROM reviews
+        WHERE user_id = ?
+    """, user_id)[0]
+
+    reviews = db.execute("""
+        SELECT books.title, books.author, books.isbn,
+               reviews.rating, reviews.comment, reviews.timestamp
+        FROM reviews
+        JOIN books ON reviews.book_id = books.id
+        WHERE reviews.user_id = ?
+        ORDER BY reviews.timestamp DESC
+    """, user_id)
+
+    return render_template(
+        "profile.html",
+        user=user,
+        stats=stats,
+        reviews=reviews
+    )
+
 
 # top books route
 @app.route("/top")

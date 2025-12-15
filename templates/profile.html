@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block main %}
+<div class="profile-header">
+    <div class="avatar-section">
+        <img
+            src="/static/avatars/{{ user.avatar if user.avatar else 'default.jpeg' }}"
+            alt="Avatar"
+            class="avatar"
+        >
+
+        <form method="post" enctype="multipart/form-data" class="avatar-form">
+            <input type="file" name="avatar" id="avatar-input" accept="image/*" required>
+            <label for="avatar-input" class="avatar-btn">Change Avatar</label>
+            <button type="submit" class="save-avatar-btn">Save</button>
+        </form>
+    </div>
+
+    <div class="profile-info">
+        <h1>👤 {{ user.username }}</h1>
+
+        <p><strong>Total Reviews:</strong> {{ stats.review_count }}</p>
+
+        <p>
+            <strong>Average Rating Given:</strong>
+            {% if stats.avg_rating %}
+                {{ stats.avg_rating }}/5
+            {% else %}
+                N/A
+            {% endif %}
+        </p>
+    </div>
+</div>
+
+<hr>
+
+<h2>Your Reviews</h2>
+
+{% if reviews %}
+    {% for review in reviews %}
+        <div class="review">
+            <a href="/book/{{ review.isbn }}">
+                <strong>{{ review.title }}</strong>
+            </a>
+            <br>
+            <em>{{ review.author }}</em>
+            <br>
+
+            <span class="stars">
+                {% for i in range(review.rating) %}
+                    ★
+                {% endfor %}
+                {% for i in range(5 - review.rating) %}
+                    <span class="star-empty">★</span>
+                {% endfor %}
+            </span>
+
+            <p>{{ review.comment }}</p>
+            <small>{{ review.timestamp }}</small>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>You haven't reviewed any books yet.</p>
+{% endif %}
+{% endblock %}

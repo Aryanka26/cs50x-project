@@ -8,16 +8,17 @@
 <body>
     <nav>
         <button id="theme-toggle" style="margin-left:auto;">🌙</button>
-        <a href="/top">Top Rated</a>
-
         {% if session.user_id %}
             <a href="/">Home</a>
             <a href="/search">Search</a>
             <a href="/logout">Logout</a>
+            <a href="/profile">Profile</a>
+            <a href="/top">Top Rated</a>
         {% else %}
             <a href="/login">Login</a>
             <a href="/register">Register</a>
         {% endif %}
+        
     </nav>
 
     <main>
