@@ -19,7 +19,21 @@
 {% if reviews %}
     <ul>
         {% for review in reviews %}
-            <li><strong>{{ review.username }}</strong> rated {{ review.rating }}/5: {{ review.comment }} <em>({{ review.timestamp }})</em></li>
+            <div class="review">
+                <strong>{{ review.username }}</strong>
+
+                <span class="stars">
+                    {% for i in range(review.rating) %}
+                        ★
+                    {% endfor %}
+                    {% for i in range(5 - review.rating) %}
+                        <span class="star-empty">★</span>
+                    {% endfor %}
+                </span>
+
+                <p>{{ review.comment }}</p>
+                <small>{{ review.timestamp }}</small>
+            </div>
         {% endfor %}
     </ul>
 {% else %}
@@ -29,8 +43,25 @@
 <hr>
 <h2>Leave a Review</h2>
 <form method="post">
-    <label for="rating">Rating (1-5):</label>
-    <input type="number" name="rating" min="1" max="5" required>
+    <label>Rating:</label>
+
+    <div class="star-rating">
+        <input type="radio" name="rating" id="star5" value="5" required>
+        <label for="star5">★</label>
+
+        <input type="radio" name="rating" id="star4" value="4">
+        <label for="star4">★</label>
+
+        <input type="radio" name="rating" id="star3" value="3">
+        <label for="star3">★</label>
+
+        <input type="radio" name="rating" id="star2" value="2">
+        <label for="star2">★</label>
+
+        <input type="radio" name="rating" id="star1" value="1">
+        <label for="star1">★</label>
+    </div>
+
     <br>
     <label for="comment">Comment:</label>
     <textarea name="comment" placeholder="Write your review here..."></textarea>

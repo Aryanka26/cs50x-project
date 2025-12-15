@@ -1,0 +1,156 @@
+/* ---------- RESET ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ---------- BODY ---------- */
+body {
+    background-color: #f5f6fa;
+    color: #2c2c2c;
+    line-height: 1.6;
+}
+
+/* ---------- NAVBAR ---------- */
+nav {
+    background-color: #1f2933;
+    padding: 14px 40px;
+    display: flex;
+    gap: 25px;
+}
+
+nav a {
+    color: #f5f6fa;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+nav a:hover {
+    color: #38bdf8;
+}
+
+/* ---------- MAIN CONTENT ---------- */
+main {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* ---------- HEADINGS ---------- */
+h1 {
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+h2 {
+    margin-bottom: 15px;
+    margin-top: 20px;
+    font-size: 22px;
+}
+
+/* ---------- FORMS ---------- */
+form {
+    margin-top: 15px;
+}
+
+input,
+textarea,
+button {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+    font-size: 14px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+button {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+button:hover {
+    background-color: #1d4ed8;
+}
+
+/* ---------- LISTS ---------- */
+ul {
+    list-style: none;
+}
+
+li {
+    padding: 12px;
+    margin-bottom: 10px;
+    background-color: #f9fafb;
+    border-radius: 8px;
+}
+
+/* ---------- LINKS ---------- */
+a {
+    color: #2563eb;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ---------- REVIEWS ---------- */
+.review {
+    padding: 12px;
+    border-left: 4px solid #2563eb;
+    background-color: #f1f5f9;
+    margin-bottom: 10px;
+}
+
+/* ---------- ERROR PAGE ---------- */
+.error-box {
+    text-align: center;
+    padding: 40px;
+}
+
+/* ---------- STAR RATINGS ---------- */
+.stars {
+    color: #fbbf24; /* golden yellow */
+    font-size: 16px;
+    margin-left: 5px;
+}
+
+.star-empty {
+    color: #d1d5db; /* light gray */
+}
+
+/* ---------- CLICKABLE STAR INPUT ---------- */
+.star-rating {
+    direction: rtl;
+    display: inline-flex;
+    font-size: 24px;
+}
+
+.star-rating input {
+    display: none;
+}
+
+.star-rating label {
+    color: #d1d5db;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.star-rating input:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: #fbbf24;
+}
