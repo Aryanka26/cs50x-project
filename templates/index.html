@@ -1,8 +1,31 @@
 {% extends "layout.html" %}
 
-{% block title %}Home{% endblock %}
+{% block title %}My Dashboard{% endblock %}
 
-{% block content %}
-<h1>Welcome to Book Review!</h1>
-<p>This is the home page.</p>
+{% block main %}
+
+    <h2>Reviewed Books</h2>
+    {% if reviews %}
+        <ul>
+        {% for review in reviews %}
+            <li><a href="/book/{{ review.isbn }}">{{ review.title }}</a> — Rated {{ review.rating }}/5</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>You haven't reviewed any books yet.</p>
+    {% endif %}
+
+    <hr>
+
+    <h2>Recently Searched Books</h2>
+    {% if searches %}
+        <ul>
+        {% for book in searches %}
+            <li><a href="/book/{{ book.isbn }}">{{ book.title }}</a> by {{ book.author }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>You haven't searched for any books yet.</p>
+    {% endif %}
+    
 {% endblock %}

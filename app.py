@@ -24,12 +24,28 @@ db = SQL("sqlite:///books.db")
 @app.route("/")
 @login_required
 def index():
-    """Show user's reviewed books"""
     user_id = session["user_id"]
-    reviews = db.execute(
-        "SELECT books.title, books.author, reviews.rating, reviews.comment, reviews.timestamp FROM reviews JOIN books ON reviews.book_id = books.id WHERE reviews.user_id = ? ORDER BY reviews.timestamp DESC",
-        user_id)
-    return render_template("index.html", reviews=reviews)
+
+    # Reviewed books
+    reviews = db.execute( """
+        SELECT books.title, books.author, books.isbn, 
+               reviews.rating, reviews.comment, reviews.timestamp 
+        FROM reviews 
+        JOIN books ON reviews.book_id = books.id 
+        WHERE reviews.user_id = ? 
+        ORDER BY reviews.timestamp DESC
+    """, user_id)
+
+    # Fetch searched books
+    searches = db.execute("""
+        SELECT books.title, books.author, books.isbn
+        FROM searches
+        JOIN books ON searches.book_id = books.id
+        WHERE searches.user_id = ?
+        ORDER BY searches.timestamp DESC
+    """, user_id)
+
+    return render_template("index.html", reviews=reviews, searches=searches)
 
 # login route
 @app.route("/login", methods=["GET", "POST"])
@@ -119,6 +135,15 @@ def search():
 
         if len(results) == 0:
             return apology("no books found")
+        
+        # Log searched books for this user
+        user_id = session["user_id"]
+        for book in results:
+            # Insert search; ignore if already exists
+            db.execute(
+                "INSERT OR IGNORE INTO searches (user_id, book_id) VALUES (?, ?)",
+                user_id, book["id"]
+            )
 
         return render_template("search.html", results=results, query=query)
 
@@ -179,6 +204,3 @@ def book(isbn):
     return render_template("book.html", book=book, reviews=reviews, api_info=api_info)
 
 
-@app.route("/test")
-def test():
-    return render_template("test.html")
