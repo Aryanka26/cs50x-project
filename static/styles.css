@@ -154,3 +154,51 @@ a:hover {
 .star-rating label:hover ~ label {
     color: #fbbf24;
 }
+
+/* ---------- DARK MODE ---------- */
+body.dark {
+    background-color: #0f172a;
+    color: #e5e7eb;
+}
+
+body.dark main {
+    background-color: #020617;
+    box-shadow: none;
+}
+
+body.dark nav {
+    background-color: #020617;
+}
+
+body.dark nav a {
+    color: #e5e7eb;
+}
+
+body.dark nav a:hover {
+    color: #38bdf8;
+}
+
+body.dark li {
+    background-color: #020617;
+}
+
+body.dark input,
+body.dark textarea {
+    background-color: #020617;
+    color: #e5e7eb;
+    border: 1px solid #334155;
+}
+
+body.dark button {
+    background-color: #38bdf8;
+    color: #020617;
+}
+
+body.dark button:hover {
+    background-color: #0ea5e9;
+}
+
+body.dark .review {
+    background-color: #020617;
+    border-left-color: #38bdf8;
+}

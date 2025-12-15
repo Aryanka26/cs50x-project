@@ -47,6 +47,27 @@ def index():
 
     return render_template("index.html", reviews=reviews, searches=searches)
 
+# top books route
+@app.route("/top")
+@login_required
+def top():
+    top_books = db.execute("""
+        SELECT 
+            books.title,
+            books.author,
+            books.isbn,
+            ROUND(AVG(reviews.rating), 2) AS avg_rating,
+            COUNT(reviews.id) AS review_count
+        FROM reviews
+        JOIN books ON reviews.book_id = books.id
+        GROUP BY books.id
+        HAVING COUNT(reviews.id) > 0
+        ORDER BY avg_rating DESC, review_count DESC
+        LIMIT 20
+    """)
+
+    return render_template("top.html", books=top_books)
+
 # login route
 @app.route("/login", methods=["GET", "POST"])
 def login():

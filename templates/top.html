@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}Top Rated Books{% endblock %}
+
+{% block main %}
+<h1>🏆 Top Rated Books</h1>
+
+{% if books %}
+    <ul>
+    {% for book in books %}
+        <li>
+            <a href="/book/{{ book.isbn }}">
+                <strong>{{ book.title }}</strong>
+            </a>
+            <br>
+            <em>{{ book.author }}</em>
+            <br>
+
+            <span class="stars">
+                {% for i in range(book.avg_rating | round(0, 'floor') | int) %}
+                    ★
+                {% endfor %}
+                {% for i in range(5 - (book.avg_rating | round(0, 'floor') | int)) %}
+                    <span class="star-empty">★</span>
+                {% endfor %}
+            </span>
+
+            <small>
+                {{ book.avg_rating }}/5 ({{ book.review_count }} reviews)
+            </small>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No books have been reviewed yet.</p>
+{% endif %}
+{% endblock %}
