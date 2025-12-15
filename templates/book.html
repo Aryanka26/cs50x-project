@@ -8,6 +8,25 @@
 <p><strong>Year:</strong> {{ book.year }}</p>
 <p><strong>ISBN:</strong> {{ book.isbn }}</p>
 
+{% if avg_rating.count > 0 %}
+    <p>
+        <span class="stars">
+            {% for i in range(avg_rating.average | round(0, 'floor') | int) %}
+                ★
+            {% endfor %}
+            {% for i in range(5 - (avg_rating.average | round(0, 'floor') | int)) %}
+                <span class="star-empty">★</span>
+            {% endfor %}
+        </span>
+        <strong>
+            {{ avg_rating.average | round(1) }}/5
+        </strong>
+        ({{ avg_rating.count }} reviews)
+    </p>
+{% else %}
+    <p>No ratings yet</p>
+{% endif %}
+
 {% if api_info %}
     <p><strong>Pages:</strong> {{ api_info.pages }}</p>
     <p><strong>Published:</strong> {{ api_info.publish_year }}</p>

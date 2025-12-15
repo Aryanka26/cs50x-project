@@ -172,6 +172,12 @@ def book(isbn):
         ORDER BY reviews.timestamp DESC
     """, book["id"])
 
+    avg_rating = db.execute("""
+        SELECT AVG(rating) AS average, COUNT(*) AS count
+        FROM reviews
+        WHERE book_id = ?
+    """, book["id"])[0]
+
     if request.method == "POST":
         # User submitting a review
         rating = request.form.get("rating")
@@ -201,6 +207,13 @@ def book(isbn):
     # get additional info from external API
     api_info = lookup_book(isbn)
 
-    return render_template("book.html", book=book, reviews=reviews, api_info=api_info)
+    return render_template(
+        "book.html",
+        book=book,
+        reviews=reviews,
+        api_info=api_info,
+        avg_rating=avg_rating
+    )
+
 
 
