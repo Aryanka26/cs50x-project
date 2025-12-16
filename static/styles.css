@@ -518,3 +518,67 @@ body.dark .auth-image {
     background: radial-gradient(circle, rgba(37,99,235,0.15), transparent 60%);
     z-index: -1;
 }
+
+.brand {
+    font-weight: 700;
+    color: #2563eb;      
+    letter-spacing: 0.5px;
+    background: linear-gradient(90deg, #2563eb, #38bdf8);
+    -webkit-background-clip: text;
+}
+
+body.dark .brand {
+    color: #93c5fd;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    padding: 14px 30px;
+    gap: 30px;
+}
+
+.nav-left {
+    flex: 1;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.brand-logo {
+    font-weight: 700;
+    font-size: 20px;
+    margin-right: 30px;
+}
+
+body.dark .brand-logo {
+    color: #93c5fd;
+}
+
+.nav-links a {
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+.nav-brand {
+    font-weight: 700;
+    font-size: 20px;
+    color: #e5e7eb;   
+}
+
+body.dark .nav-brand {
+    color: #e5e7eb;  
+}
+
