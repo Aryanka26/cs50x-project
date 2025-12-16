@@ -87,7 +87,7 @@ This section briefly explains the purpose of each major file and directory used 
 - **README.md**  
   Documentation describing the project, features, setup instructions, and design decisions.
 
-- **requirements.txt**
+- **requirements.txt**   
   Contains names of all the libraries needed to be installed.
 ---
 
