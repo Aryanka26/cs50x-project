@@ -1,5 +1,7 @@
 # CS50X Final Project: 📚 BookNest
 
+Demo video link :   
+
 **BookNest** is a full-stack web application that allows users to discover books, write reviews, track their reading activity, and build a personalized reading profile.
 
 This project was created as the **final project for CS50x**, showcasing backend development, database design, authentication, external API usage, and frontend UI/UX improvements.
@@ -118,14 +120,6 @@ This section briefly explains the purpose of each major file and directory used 
     - View book details and submit reviews.
     - Visit your profile to view your reviewed books and upload an avatar.
     - Toggle between light and dark mode.
-
----
-
-## Demo Video
-
-- Demo video link :
-
-(Submitted separately as per CS50 requirements)
 
 ---
 
