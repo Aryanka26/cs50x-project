@@ -5,8 +5,12 @@
 {% block main %}
 <h1>{{ book.title }}</h1>
 <p><strong>Author:</strong> {{ book.author }}</p>
-<p><strong>Year:</strong> {{ book.year }}</p>
 <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+
+{% if api_info %}
+    <p><strong>Pages:</strong> {{ api_info.pages }}</p>
+    <p><strong>Published:</strong> {{ api_info.publish_year }}</p>
+{% endif %}
 
 {% if avg_rating.count > 0 %}
     <p>
@@ -27,10 +31,7 @@
     <p>No ratings yet</p>
 {% endif %}
 
-{% if api_info %}
-    <p><strong>Pages:</strong> {{ api_info.pages }}</p>
-    <p><strong>Published:</strong> {{ api_info.publish_year }}</p>
-{% endif %}
+
 
 <hr>
 <h2>Reviews</h2>
