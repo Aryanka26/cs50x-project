@@ -3,11 +3,57 @@
 {% block title %}Register{% endblock %}
 
 {% block main %}
-<h1>Register</h1>
-<form method="post">
-    <input name="username" placeholder="Username" required>
-    <input type="password" name="password" placeholder="Password" required>
-    <input type="password" name="confirmation" placeholder="Confirm Password" required>
-    <button type="submit">Register</button>
-</form>
+<div class="auth-page">
+    <!-- LEFT SIDE (same structure as login) -->
+    <div class="auth-left">
+        <div class="auth-image-wrapper">
+            <img
+                src="/static/images/auth-books2.png"
+                alt="Books"
+                class="auth-image"
+            >
+        </div>
+
+        <h1>Join Book Review</h1>
+        <p>
+            Create your personal reading space.
+            Rate books, write reviews, and keep
+            track of everything you read.
+        </p>
+    </div>
+
+    <!-- RIGHT SIDE (card, same as login) -->
+    <div class="auth-card">
+        <h2>Create Account</h2>
+
+        <form method="post">
+            <input
+                name="username"
+                placeholder="Username"
+                required
+            >
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                required
+            >
+
+            <input
+                type="password"
+                name="confirmation"
+                placeholder="Confirm Password"
+                required
+            >
+
+            <button type="submit">Register</button>
+        </form>
+
+        <p class="auth-switch">
+            Already have an account?
+            <a href="/login">Log in</a>
+        </p>
+    </div>
+</div>
 {% endblock %}
