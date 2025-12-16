@@ -350,3 +350,171 @@ body.dark .hero {
 body, .book-card, .hero {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+body {
+    background-color: #f8fafc;
+    background-image: url("https://www.transparenttextures.com/patterns/subtle-grunge.png");
+}
+
+body.dark {
+    background-color: #0f172a;
+    background-image: url("https://www.transparenttextures.com/patterns/asfalt-light.png");
+}
+
+.book-card,
+.card,
+.hero {
+    position: relative;
+    z-index: 1;
+}
+
+.auth-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+    gap: 80px;            
+    min-height: 90vh;
+}
+
+
+.auth-left {
+    max-width: 380px;
+}
+
+.auth-left h1 {
+    font-size: 36px;
+    margin-bottom: 12px;
+}
+
+.auth-left p {
+    font-size: 16px;
+    color: #475569;
+    line-height: 1.6;
+}
+
+.auth-card {
+    background: white;
+    padding: 35px;
+    border-radius: 16px;
+    width: 320px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+.auth-card h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.auth-card input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+}
+
+.auth-card button {
+    width: 100%;
+    padding: 12px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.auth-card button:hover {
+    background: #1d4ed8;
+}
+
+.auth-switch {
+    margin-top: 14px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.auth-switch a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+body.dark .auth-card {
+    background: #020617;
+    color: #e5e7eb;
+    border: 1px solid #1e293b;
+}
+
+body.dark .auth-left p {
+    color: #cbd5f5;
+}
+
+body.dark .auth-card input {
+    background: #020617;
+    color: #e5e7eb;
+    border: 1px solid #1e293b;
+}
+
+.auth-illustration {
+    width: 100%;
+    max-width: 320px;
+    margin-bottom: 25px;
+    opacity: 0.95;
+}
+
+body.dark .auth-illustration {
+    opacity: 0.85;
+    filter: brightness(0.9);
+}
+
+.auth-page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+    opacity: 0.3;
+    z-index: -1;
+}
+
+.auth-image-wrapper {
+    width: 100%;
+    max-width: 360px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+
+.auth-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: brightness(0.95) contrast(0.95);
+}
+
+body.dark .auth-image {
+    filter: brightness(0.75) contrast(0.9);
+}
+
+.auth-left h1 {
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+
+.auth-left p {
+    font-size: 15px;
+    max-width: 340px;
+    color: #475569;
+}
+
+.auth-card {
+    position: relative;
+}
+
+.auth-card::before {
+    content: "";
+    position: absolute;
+    inset: -15px;
+    background: radial-gradient(circle, rgba(37,99,235,0.15), transparent 60%);
+    z-index: -1;
+}
