@@ -6,20 +6,30 @@
     <link href="/static/styles.css" rel="stylesheet">
 </head>
 <body>
-    <nav>
-        <button id="theme-toggle" style="margin-left:auto;">🌙</button>
-        {% if session.user_id %}
-            <a href="/">Home</a>
-            <a href="/search">Search</a>
-            <a href="/logout">Logout</a>
-            <a href="/profile">Profile</a>
-            <a href="/top">Top Rated</a>
-        {% else %}
-            <a href="/login">Login</a>
-            <a href="/register">Register</a>
-        {% endif %}
-        
+    <nav class="navbar">
+ 
+        <div class="nav-left">
+            <span class="nav-brand">📚 BookNest</span>
+        </div>
+
+        <div class="nav-links">
+            {% if session.user_id %}
+                <a href="/">Home</a>
+                <a href="/search">Search</a>
+                <a href="/top">Top Rated</a>
+                <a href="/profile">Profile</a>
+                <a href="/logout">Logout</a>
+            {% else %}
+                <a href="/login">Login</a>
+                <a href="/register">Register</a>
+            {% endif %}
+        </div>
+
+        <div class="nav-right">
+            <button id="theme-toggle">🌙</button>
+        </div>
     </nav>
+
 
     <main>
         {% block main %}
